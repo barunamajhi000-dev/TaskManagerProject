@@ -14,7 +14,7 @@ function Header({setShowForm}) {
           {/* Title */}
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-white">
-              TaskFlow
+              TaskSphere
             </h1>
             <p className="text-sm text-gray-400">
               Manage and track your tasks efficiently
@@ -24,7 +24,7 @@ function Header({setShowForm}) {
 
         {/* Right Section */}
         <button
-            onClick={()=>setShowForm(true)}
+          onClick={() => setShowForm(true)}
           className="
             bg-indigo-600
             hover:bg-indigo-700

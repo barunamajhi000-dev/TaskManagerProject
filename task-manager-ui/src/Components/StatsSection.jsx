@@ -13,7 +13,7 @@ function StatsSection({ stats }) {
 
       <StatsCard
         title="In Progress"
-        value={stats.inProgress}
+        value={stats.total-stats.completed}
         icon={<FaClock className="text-white text-xl" />}
         color="bg-yellow-500"
       />

@@ -1,6 +1,16 @@
 import { FaTasks } from "react-icons/fa";
-
-function Header({setShowForm}) {
+import { signOut } from "aws-amplify/auth";
+function Header({setShowForm,setIsAuthenticated,setTasks,setLoading}) {
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      setIsAuthenticated(false);
+      setTasks([]);
+      setLoading(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <header className="bg-gray-900 border-b border-gray-800 px-4 md:px-8 py-4">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -23,24 +33,22 @@ function Header({setShowForm}) {
         </div>
 
         {/* Right Section */}
-        <button
-          onClick={() => setShowForm(true)}
-          className="
-            bg-indigo-600
-            hover:bg-indigo-700
-            text-white
-            px-5
-            py-3
-            rounded-xl
-            font-medium
-            transition
-            w-full
-            md:w-auto
-            hover:cursor-pointer
-          "
-        >
-          + New Task
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowForm(true)}
+            // onClick={()=> console.log("button clicked")}
+            className="bg-indigo-600 hover:cursor-pointer hover:bg-indigo-700 text-white px-5 py-3 rounded-xl font-medium transition"
+          >
+            + New Task
+          </button>
+
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 hover:cursor-pointer hover:bg-red-500 text-white px-5 py-3 rounded-xl font-medium transition"
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </header>
   );

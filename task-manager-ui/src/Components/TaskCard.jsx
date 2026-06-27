@@ -1,6 +1,8 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-function TaskCard({ task, onComplete ,onDelete}) {
+function TaskCard({ task,onEdit, onComplete ,onDelete}) {
+  // console.log(task);
+  
   return (
     <div className="bg-gray-900 rounded-2xl p-5 border border-gray-800">
       <div className="flex justify-between items-start">
@@ -32,23 +34,31 @@ function TaskCard({ task, onComplete ,onDelete}) {
             <p className="text-gray-400 mt-1">{task.description}</p>
 
             <div className="flex gap-2 mt-3">
-              <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">
+              {/* <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">
                 {task.priority}
-              </span>
+              </span> */}
 
               <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
                 {task.status}
+              </span>
+              <span className="text-sm text-gray-400 px-3 py-1">
+                📅 Due: {task.dueDate}
               </span>
             </div>
           </div>
         </div>
 
         <div className="flex gap-3">
-          <button className="text-yellow-400">
+          <button onClick={()=> onEdit(task)} className="text-yellow-400">
             <FaEdit />
           </button>
 
-          <button className="text-red-400 hover:cursor-pointer" onClick ={()=>{onDelete(task.taskId)}} >
+          <button
+            className="text-red-400 hover:cursor-pointer"
+            onClick={() => {
+              onDelete(task.taskId);
+            }}
+          >
             <FaTrash />
           </button>
         </div>
